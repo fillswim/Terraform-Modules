@@ -3,7 +3,7 @@ variable "private_subnet_cidr" {
 }
 
 variable "private_subnet_dns_nameservers" {
-  type = list(string)
+  type    = list(string)
   default = ["192.168.2.11", "192.168.2.12"]
 }
 
@@ -52,4 +52,9 @@ variable "router_name" {
 variable "private_port_1_name" {
   type    = string
   default = "private-port-1"
+}
+
+variable "private_subnet_name" {
+  type    = string
+  default = "private-subnet"
 }

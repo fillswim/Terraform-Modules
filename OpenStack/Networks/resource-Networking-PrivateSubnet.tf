@@ -1,6 +1,7 @@
 
 # Create a private subnet
 resource "openstack_networking_subnet_v2" "private_subnet_1" {
+  name            = var.private_subnet_name
   network_id      = openstack_networking_network_v2.private_network.id
   cidr            = var.private_subnet_cidr
   dns_nameservers = var.private_subnet_dns_nameservers
