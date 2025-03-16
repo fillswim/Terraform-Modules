@@ -1,3 +1,9 @@
+
+variable "project-name" {
+  description = "Имя проекта"
+  type        = string
+}
+
 variable "private_subnet_cidr" {
   type = string
 }

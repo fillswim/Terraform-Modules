@@ -1,7 +1,9 @@
 
-# Находим сеть по имени
+
+# Находим сеть по имени и id проекта
 data "openstack_networking_network_v2" "private_network" {
-  name = var.private-network-name
+  tenant_id = data.openstack_identity_project_v3.project.id
+  name      = var.private-network-name
 }
 
 # Находим подсеть в сети по id сети и названию подсети

@@ -9,7 +9,7 @@ resource "openstack_compute_instance_v2" "instance" {
   admin_pass      = var.admin-password
 
   network {
-    name        = data.openstack_networking_network_v2.private_network.name
+    uuid        = data.openstack_networking_network_v2.private_network.id
     fixed_ip_v4 = cidrhost(data.openstack_networking_subnet_v2.private_subnet.cidr, var.starting-host-number + count.index)
   }
 }

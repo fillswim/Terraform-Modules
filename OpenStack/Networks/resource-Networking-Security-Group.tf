@@ -1,11 +1,13 @@
 
 resource "openstack_networking_secgroup_v2" "secgroup_1" {
+  tenant_id   = data.openstack_identity_project_v3.project.id
   name        = var.secgroup_name
   description = "My neutron security group"
 }
 
 # TCP
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_1" {
+  tenant_id      = data.openstack_identity_project_v3.project.id
   direction      = "ingress"
   ethertype      = "IPv4"
   protocol       = "tcp"
@@ -18,6 +20,7 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_1" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_2" {
+  tenant_id      = data.openstack_identity_project_v3.project.id
   direction      = "egress"
   ethertype      = "IPv4"
   protocol       = "tcp"
@@ -31,6 +34,7 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_2" {
 
 # UDP
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_3" {
+  tenant_id      = data.openstack_identity_project_v3.project.id
   direction      = "ingress"
   ethertype      = "IPv4"
   protocol       = "udp"
@@ -43,6 +47,7 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_3" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_4" {
+  tenant_id      = data.openstack_identity_project_v3.project.id
   direction      = "egress"
   ethertype      = "IPv4"
   protocol       = "udp"
@@ -56,6 +61,7 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_4" {
 
 # ICMP
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_5" {
+  tenant_id      = data.openstack_identity_project_v3.project.id
   direction      = "ingress"
   ethertype      = "IPv4"
   protocol       = "icmp"
@@ -68,6 +74,7 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_5" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_6" {
+  tenant_id      = data.openstack_identity_project_v3.project.id
   direction      = "egress"
   ethertype      = "IPv4"
   protocol       = "icmp"

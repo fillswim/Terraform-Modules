@@ -1,4 +1,9 @@
 
+variable "project-name" {
+  description = "Имя проекта"
+  type        = string
+}
+
 variable "instance-name-prefix" {
   description = "Префикс имени инстанса"
   type        = string
