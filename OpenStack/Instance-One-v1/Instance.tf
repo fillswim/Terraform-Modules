@@ -53,6 +53,10 @@ output "name" {
   value = openstack_compute_instance_v2.instance.name
 }
 
+output "instance-id" {
+  value = openstack_compute_instance_v2.instance.id
+}
+
 output "flavor_name" {
   value = openstack_compute_instance_v2.instance.flavor_name
 }
