@@ -178,3 +178,36 @@ variable "disk_format" {
   default = "raw"
 }
 
+# ===============================================
+#                   Extra Disks
+# ===============================================
+
+variable "extra_disks_count" {
+  type    = number
+  default = 0
+}
+
+variable "extra_disks_size" {
+  type    = number
+  default = 100
+}
+
+variable "extra_disks_type" {
+  type    = string
+  default = "disk"
+}
+
+variable "extra_disks_slot_type" {
+  type    = string
+  default = "scsi"
+}
+
+variable "extra_disks_storage" {
+  type    = string
+  default = "HDD"
+}
+
+variable "extra_disks_format" {
+  type    = string
+  default = "raw"
+}

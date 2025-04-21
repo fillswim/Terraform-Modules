@@ -1,5 +1,14 @@
 locals {
   subnet = "${var.subnet_octet_1}.${var.subnet_octet_2}.${var.subnet_octet_3}"
+  extra_disks = [
+    for i in range(var.extra_disks_count) : {
+      slot    = "${var.extra_disks_slot_type}${i+1}"
+      type    = var.extra_disks_type
+      storage = var.extra_disks_storage
+      size    = var.extra_disks_size
+      format  = var.extra_disks_format
+    }
+  ]
 }
 
 resource "proxmox_vm_qemu" "server" {
@@ -46,12 +55,14 @@ resource "proxmox_vm_qemu" "server" {
   # Порядок загрузки
   boot = var.boot_order
 
+  # Cloud-Init Disk
   disk {
     slot    = var.cloudinit_disk_slot
     type    = var.cloudinit_disk_type
     storage = var.cloudinit_disk_storage
   }
 
+  # Main Disk
   disk {
     slot    = var.disk_slot
     type    = var.disk_type
@@ -60,6 +71,19 @@ resource "proxmox_vm_qemu" "server" {
     format  = var.disk_format
   }
 
+  # Extra Disks
+  dynamic "disk" {
+    for_each = local.extra_disks
+    content {
+      slot    = disk.value.slot
+      type    = disk.value.type
+      storage = disk.value.storage
+      size    = disk.value.size
+      format  = disk.value.format
+    }
+  }
+
+  # VGA
   vga {
     type = var.vga_type
   }
