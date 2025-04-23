@@ -211,3 +211,17 @@ variable "extra_disks_format" {
   type    = string
   default = "raw"
 }
+
+# ===============================================
+#                   Fixed VMID
+# ===============================================
+
+variable "fixed_vmid" {
+  type    = number
+  default = 0
+}
+
+variable "fixed_name" {
+  type    = string
+  default = ""
+}

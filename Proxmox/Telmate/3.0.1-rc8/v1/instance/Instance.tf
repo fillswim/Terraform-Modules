@@ -18,14 +18,19 @@ resource "proxmox_vm_qemu" "server" {
 
   # 1000 - prod
   # 2000 - test
-  vmid = var.env == "prod" ? 10000 * var.subnet_octet_3 + (var.start_vmid["prod"] + var.subnet_octet_4 + count.index) : 10000 * var.subnet_octet_3 + (var.start_vmid["test"] + var.subnet_octet_4 + count.index)
+  # vmid = var.env == "prod" ? 10000 * var.subnet_octet_3 + (var.start_vmid["prod"] + var.subnet_octet_4 + count.index) : 10000 * var.subnet_octet_3 + (var.start_vmid["test"] + var.subnet_octet_4 + count.index)
+  
+  # Если fixed_vmid не 0, то используем его, иначе используем расчет по env
+  vmid = var.fixed_vmid != 0 ? var.fixed_vmid + count.index : 10000 * var.subnet_octet_3 + (var.start_vmid[var.env] + var.subnet_octet_4 + count.index)
 
   # Нода Proxmox, на которой будут разворачиваться ВМ-ки
   target_node = var.proxmox_node
   # Название ВМ-ок
-  name = "${var.vm_name}-${count.index + 1}"
+  # name = "${var.vm_name}-${count.index + 1}"
+  name = var.fixed_name != "" ? var.fixed_name : "${var.vm_name}-${count.index + 1}"
   # Описание
-  desc = "${var.vm_name}-${count.index + 1}"
+  # desc = "${var.vm_name}-${count.index + 1}"
+  desc = var.fixed_name != "" ? var.fixed_name : "${var.vm_name}-${count.index + 1}"
 
   # Клонируемый образ ВМ
   clone = var.clone_vm_image
