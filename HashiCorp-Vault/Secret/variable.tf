@@ -48,6 +48,16 @@ variable "vault_role_bound_service_account_namespaces" {
   type    = list(string)
 }
 
+variable "vault_role_token_ttl" {
+  type    = number
+  default = 86400 # 24 часа
+}
+
+variable "vault_role_audience" {
+  type    = string
+  default = "vault"
+}
+
 # ==========================================
 #                   Secret
 # ==========================================

@@ -24,9 +24,9 @@ resource "vault_kubernetes_auth_backend_role" "role" {
   role_name                        = var.vault_role_name
   bound_service_account_names      = var.vault_role_bound_service_account_names
   bound_service_account_namespaces = var.vault_role_bound_service_account_namespaces
-  token_ttl                        = 86400 # 24 часа 
+  token_ttl                        = var.vault_role_token_ttl
   token_policies                   = ["default", vault_policy.policy.name]
-  audience                         = "vault"
+  audience                         = var.vault_role_audience
 }
 
 # =================================== Secret ===================================
