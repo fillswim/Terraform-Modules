@@ -1,3 +1,20 @@
+# ================================================
+#                  SSH Connection
+# ================================================
+
+variable "ssh_private_key" {
+  type    = string
+  default = "~/.ssh/id_ed25519"
+}
+
+variable "ssh_user" {
+  type    = string
+}
+
+# ================================================
+#                    CPU Settings
+# ================================================
+
 variable "cpu_cores" {
   default = {
     "proxmox1" = 4

@@ -159,6 +159,29 @@ resource "proxmox_virtual_environment_vm" "instance" {
   }
 }
 
+# Переименовать hostname
+resource "null_resource" "remote_exec" {
+
+  depends_on = [proxmox_virtual_environment_vm.instance]
+
+  count = var.count_vms
+
+  provisioner "remote-exec" {
+
+    connection {
+      type        = "ssh"
+      host        = cidrhost(local.ip_address_and_mask, local.ip_address_octet_4 + count.index)
+      user        = var.ssh_user
+      private_key = file(var.ssh_private_key)
+    }
+
+    inline = [
+      "sudo hostnamectl set-hostname ${var.vm_name}-${count.index + 1}"
+    ]
+  }
+
+}
+
 
 output "details" {
   value = join("\n\n", [
