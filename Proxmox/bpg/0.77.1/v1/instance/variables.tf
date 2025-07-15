@@ -33,6 +33,7 @@ variable "discard" {
     "local"     = "ignore"
     "SSD"       = "ignore"
     "HDD"       = "ignore"
+    "SAS"       = "ignore"
   }
 }
 
