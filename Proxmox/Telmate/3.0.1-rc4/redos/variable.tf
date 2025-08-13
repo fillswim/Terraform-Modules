@@ -7,10 +7,9 @@ variable "start_vmid" {
 
 variable "cpu_cores" {
   default = {
-    "proxmox1" = 4
     "proxmox2" = 6
-    "proxmox3" = 4
     "proxmox4" = 6
+    "proxmox5" = 6
   }
 }
 

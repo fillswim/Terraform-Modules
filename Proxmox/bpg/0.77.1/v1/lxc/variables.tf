@@ -1,9 +1,7 @@
 variable "cpu_cores" {
   type = map(number)
   default = {
-    "proxmox1" = 4
     "proxmox2" = 6
-    "proxmox3" = 4
     "proxmox4" = 6
     "proxmox5" = 6
   }
@@ -39,9 +37,7 @@ variable "count_proxmox_nodes" {
 variable "proxmox_node_ip_address" {
   type = map(string)
   default = {
-    "proxmox1" = "192.168.2.3"
     "proxmox2" = "192.168.2.4"
-    "proxmox3" = "192.168.2.5"
     "proxmox4" = "192.168.2.6"
     "proxmox5" = "192.168.2.7"
   }
@@ -101,7 +97,7 @@ variable "lxc_name" {
 
 variable "proxmox_node" {
   type    = string
-  default = "proxmox1"
+  default = "proxmox5"
 }
 
 variable "memory" {

@@ -8,10 +8,9 @@ variable "start_vmid" {
 
 variable "cpu_cores" {
   default = {
-    "proxmox1" = 4
     "proxmox2" = 6
-    "proxmox3" = 4
     "proxmox4" = 6
+    "proxmox5" = 6
   }
 }
 
@@ -68,7 +67,7 @@ variable "vm_name" {
 
 variable "proxmox_node" {
   type    = string
-  default = "proxmox3"
+  default = "proxmox5"
 }
 
 variable "clone_vm_image" {
