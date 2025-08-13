@@ -1,4 +1,18 @@
 # ================================================
+#                  Proxmox Settings
+# ================================================
+
+variable "proxmox_node_names" {
+  type    = list(string)
+  default = ["proxmox2", "proxmox4", "proxmox5"]
+}
+
+variable "count_proxmox_nodes" {
+  type    = number
+  default = 3
+}
+
+# ================================================
 #                  SSH Connection
 # ================================================
 
@@ -14,11 +28,6 @@ variable "ssh_user" {
 # ================================================
 #                    CPU Settings
 # ================================================
-
-variable "proxmox_node_names" {
-  type    = list(string)
-  default = ["proxmox2", "proxmox4", "proxmox5"]
-}
 
 variable "cpu_cores" {
   default = {
@@ -38,11 +47,6 @@ variable "discard" {
     "HDD"       = "ignore"
     "SAS"       = "ignore"
   }
-}
-
-variable "count_proxmox_nodes" {
-  type    = number
-  default = 3
 }
 
 # ================================================

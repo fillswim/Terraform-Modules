@@ -1,18 +1,8 @@
 
 # terraform destroy --target=proxmox_virtual_environment_vm.ubuntu_vm
 
-# resource "proxmox_virtual_environment_file" "cloud_config" {
-#   count        = local.count_proxmox_nodes
-#   node_name    = "proxmox${1 + count.index}"
-#   datastore_id = var.cloud_init_file_datastore
-#   content_type = "snippets"
-#   source_file {
-#     path      = var.cloud_init_file_name
-#     file_name = local.full_user_data_file_name
-#   }
-# }
 resource "proxmox_virtual_environment_file" "cloud_config" {
-  count        = local.count_proxmox_nodes
+  count        = length(var.proxmox_node_names)
   node_name    = var.proxmox_node_names[count.index]
   datastore_id = var.cloud_init_file_datastore
   content_type = "snippets"
@@ -88,7 +78,7 @@ resource "proxmox_virtual_environment_vm" "instance" {
   name = "${var.vm_name}-${count.index + 1}"
   # node_name = var.proxmox_node
   # деление индекса вм-ки по модулю 5 (количество proxmox серверов) + 1
-  node_name = var.node_splitting ? var.proxmox_node_names[count.index % local.count_proxmox_nodes] : var.proxmox_node
+  node_name = var.node_splitting ? var.proxmox_node_names[count.index % length(var.proxmox_node_names)] : var.proxmox_node
 
   # формирование ID виртуальной машины
   #                    cidrhost(local.ip_address_and_mask, local.ip_address_octet_4 + count.index)     = "192.168.50.235"
