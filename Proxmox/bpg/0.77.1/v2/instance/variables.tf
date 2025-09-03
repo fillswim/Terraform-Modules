@@ -42,10 +42,9 @@ variable "cpu_cores" {
 variable "discard" {
   default = {
     "local-lvm" = "on"
-    "local"     = "ignore"
-    "SSD"       = "ignore"
-    "HDD"       = "ignore"
-    "SAS"       = "ignore"
+    "local"     = "on"
+    "HDD"       = "on"
+    "NVME-Asus" = "on"
   }
 }
 
