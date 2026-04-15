@@ -43,6 +43,13 @@ resource "openstack_compute_instance_v2" "instance" {
 
   user_data = file(var.user-data)
 
+  lifecycle {
+    ignore_changes = [
+      network,
+      security_groups
+    ]
+  }
+
 }
 
 # ==============================================================================
@@ -61,17 +68,17 @@ output "flavor_name" {
   value = openstack_compute_instance_v2.instance.flavor_name
 }
 
-output "fixed_ip_v4" {
-  value = openstack_compute_instance_v2.instance.network[0].fixed_ip_v4
-}
+# output "fixed_ip_v4" {
+#   value = openstack_compute_instance_v2.instance.network[0].fixed_ip_v4
+# }
 
 output "details" {
   value = {
     name                 = openstack_compute_instance_v2.instance.name
     flavor_name          = openstack_compute_instance_v2.instance.flavor_name
-    fixed_ip_v4          = openstack_compute_instance_v2.instance.network[0].fixed_ip_v4
+    # fixed_ip_v4          = openstack_compute_instance_v2.instance.network[0].fixed_ip_v4
     disk_size            = openstack_compute_instance_v2.instance.block_device[0].volume_size
     image_name           = openstack_compute_instance_v2.instance.image_name
-    private_network_name = openstack_compute_instance_v2.instance.network[0].name
+    # private_network_name = openstack_compute_instance_v2.instance.network[0].name
   }
 }
